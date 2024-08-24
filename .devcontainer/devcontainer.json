@@ -1,0 +1,105 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/python-3
+{
+    "name": "Python 3 + PostgreSQL & pgAdmin",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
+    },
+
+    // Minium host requirements
+    "hostRequirements": { "memory": "16gb", "cpus": 4 },
+  
+    // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode",
+  
+    // Add Dev Container Features (https://containers.dev/features)
+    "features": {
+      // Install Trunk.io (https://docs.trunk.io/docs/github-codespaces)
+      "ghcr.io/trunk-io/devcontainer-feature/trunk": "latest",
+      // Install Fish Shell (https://github.com/meaningful-ooo/devcontainer-features/tree/main/src/fish)
+    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {
+        "fisher": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+        "moby": true,
+        "azureDnsAutoDetection": true,
+        "installDockerBuildx": true,
+        "installDockerComposeSwitch": true,
+        "version": "latest",
+        "dockerDashComposeVersion": "latest"
+    },
+    },
+  
+    // ? Scripts (https://code.visualstudio.com/docs/remote/devcontainerjson-reference#_lifecycle-scripts)
+    // Install Trunk's runtimes & linters (defined in `.trunk/trunk.yaml`)
+    //"onCreateCommand": "trunk install",
+    // ? Use 'postCreateCommand' to run commands inside the container after it is created.
+    // ? It happens once the dev container has been assigned to a user for the first time.
+    ////"postCreateCommand": "bash .devcontainer/postCreateCommand.bash",
+    // ? Use 'postStartCommand' to run commands each time the container is successfully started.
+    "postStartCommand": "bash .devcontainer/postStartCommand.bash",
+    // updateContentCommand is run at > creation of the prebuild and at subsequent updates to it
+    "updateContentCommand": "trunk install",
+  
+    // Configure tool-specific properties.
+    "customizations": {
+      // Configure properties specific to VS Code.
+      "vscode": {
+        // Set *defaultcontainer specific settings.json values on container create.
+        "settings": {
+          ////"python.defaultInterpreterPath": "/usr/local/bin/python"
+        },
+        // Add the IDs of extensions you want installed when the container is created.
+        "extensions": [
+          // ************* GENERAL **************
+          // Python: IntelliSense (Pylance), Linting, Debugging (multi-threaded, remote), Jupyter Notebooks, code formatting, refactoring, unit tests, and more.
+          // https://marketplace.visualstudio.com/items?itemName=ms-python.python
+          // ! Make sure not to install the extension locally, as it will conflict with the extension installed in the container.
+          "ms-python.python",
+          // Python Indent: Correct Python indentation
+          // https://open-vsx.org/extension/KevinRose/vsc-python-indent
+          "KevinRose.vsc-python-indent",
+          // Docker
+          // https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker
+          "ms-azuretools.vscode-docker",
+          // IntelliCode extension: AI-assisted development features for Python
+          // https://marketplace.visualstudio.com/items?itemName=visualstudioexptteam.vscodeintellicode
+          ////"visualstudioexptteam.vscodeintellicode",
+          // ************* SYNTAX HIGHLIGHT **************
+          // Rainbow CSV: Highlight CSV and TSV files, Run SQL-like queries
+          // https://open-vsx.org/extension/mechatroner/rainbow-csv
+          "mechatroner.rainbow-csv",
+          // YAML: YAML Language Support by Red Hat, with built-in Kubernetes syntax support
+          // (automatically installed)
+          // https://open-vsx.org/extension/redhat/vscode-yaml
+          "redhat.vscode-yaml",
+          // Better Comments: Improve your code commenting by annotating with alert, informational, TODOs, and more
+          // https://open-vsx.org/extension/aaron-bond/better-comments
+          "aaron-bond.better-comments",
+          // ************* GIT **************
+          // GitHub Pull Requests and Issues: Pull Request and Issue Provider for GitHub
+          // https://open-vsx.org/extension/GitHub/vscode-pull-request-github
+          "GitHub.vscode-pull-request-github",
+          // ************* LINT & REFACTOR **************
+          // Trunk.io: The last linter you'll ever need
+          // https://marketplace.visualstudio.com/items?itemName=Trunk.io
+          "trunk.io",
+          // Code Spell Checker: Spelling checker for source code
+          // https://open-vsx.org/extension/streetsidesoftware/code-spell-checker
+          "streetsidesoftware.code-spell-checker",
+          "streetsidesoftware.code-spell-checker-french",
+          // ************* SQL **************
+          // Better Jinja: Syntax highlighting for jinja(2) including HTML, Markdown, YAML, Ruby and LaTeX templates
+          // https://open-vsx.org/extension/samuelcolvin/jinjahtml
+          "samuelcolvin.jinjahtml",
+          // vscode-dbt: VSCode Snippets Package for dbt and Jinja functions in SQL, YAML, and Markdown.
+          // https://marketplace.visualstudio.com/items?itemName=bastienboutonnet.vscode-dbt
+          "bastienboutonnet.vscode-dbt",
+          // dbt Power User: This extension makes vscode seamlessly work with dbt
+          // https://open-vsx.org/extension/innoverio/vscode-dbt-power-user
+          "innoverio.vscode-dbt-power-user"
+        ]
+      }
+    }
+  }

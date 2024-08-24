@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry]
+name = "dlt-dbt-snowflake-workshop"
+version = "0.1.0"
+description = "Workshop to introduce DLT, DBT and Snowflake tech stack for BI."
+authors = ["Zyad Benameur <zyad.benameur@hec.ca>"]
+
+[tool.poetry.dependencies]
+python = "^3.10.13"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
