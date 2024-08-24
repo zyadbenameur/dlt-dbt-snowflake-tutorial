@@ -3,16 +3,16 @@ dbt_project:
     dev:
 
       type: snowflake
-      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT_ID', '') }}"
+      account: "cj16876.canada-central.azure"
 
       # User/password auth
-      user: username
-      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD', '') }}"
+      user: dbt_user
+      password: password
 
-      role: user_role
-      database: database_name
-      warehouse: warehouse_name
-      schema: dbt_schema
+      role: dbt_role
+      database: raw_data
+      warehouse: dbt_warehouse
+      schema: jaffle_shop
       threads: 1
       client_session_keep_alive: False
       query_tag: anything

@@ -2,6 +2,7 @@
     "cSpell.words": [
         "bastienboutonnet",
         "Benameur",
+        "calogica",
         "dagster",
         "datamart",
         "defaultcontainer",
@@ -25,5 +26,8 @@
         "XSMALL",
         "Zyad"
     ],
-    "remote.autoForwardPortsFallback": 0
+    "remote.autoForwardPortsFallback": 0,
+    "dbt.lineage.defaultExpansion": 2,
+    "dbt.perspectiveTheme": "Pro Dark",
+    "dbt.enableNewLineagePanel": true
 }
