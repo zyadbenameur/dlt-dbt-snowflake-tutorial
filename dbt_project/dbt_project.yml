@@ -1,9 +1,8 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: "jaffle_shop"
-version: '1.0.0'
+version: "1.0.0"
 config-version: 2
 
 profile: dbt_project # Put your profile here
@@ -17,7 +16,6 @@ test-paths: ["data-tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
-
 
 target-path: "target"
 clean-targets:

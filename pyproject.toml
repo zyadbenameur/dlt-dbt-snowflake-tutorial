@@ -3,9 +3,9 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.poetry]
-name = "dlt-dbt-snowflake-workshop"
+name = "modern-data-pipelines-workshop"
 version = "0.1.0"
-description = "Workshop to introduce DLT, DBT and Snowflake tech stack for BI."
+description = "Workshop to introduce Airbyte, DBT, Dagster and Snowflake stack for BI."
 authors = ["Zyad Benameur <zyad.benameur@hec.ca>"]
 
 [tool.poetry.dependencies]
@@ -13,3 +13,7 @@ python = "^3.10.13"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
+
+[tool.dagster]
+module_name = "orchestration.definitions"
+code_location_name = "orchestration"

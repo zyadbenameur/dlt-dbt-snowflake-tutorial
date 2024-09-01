@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: raw_data
-    schema: jaffle_shop
+  - name: airbyte_database
+    schema: airbyte_schema
     description: E-commerce data for the Jaffle Shop
     freshness:
       warn_after:
