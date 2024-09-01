@@ -1,6 +1,9 @@
 # Distribution / packaging
 *.egg-info/
 
-
 # Airbyte
 Airbyte/
+
+# pycache folders
+orchestration/__pycache__/
+orchestration/assets/__pycache__/
