@@ -2,7 +2,7 @@
 *.egg-info/
 
 # Airbyte
-Airbyte/
+.airbyte/
 
 # pycache folders
 orchestration/__pycache__/
