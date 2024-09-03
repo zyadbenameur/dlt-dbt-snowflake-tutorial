@@ -1,5 +1,3 @@
-import os
-
 from dagster_airbyte import AirbyteResource, load_assets_from_airbyte_instance
 
 # TODO: comment
@@ -8,7 +6,7 @@ airbyte_instance = AirbyteResource(
     port="8000",
     # If using basic auth, include username and password:
     username="airbyte",
-    password=os.getenv("AIRBYTE_PASSWORD"),
+    password="password"
 )
 
 # TODO: comment
