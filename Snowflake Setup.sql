@@ -27,7 +27,6 @@ set dbt_datamart_database = 'DATAMART';
 set dbt_datamart_schema = 'JAFFLE_SHOP';
 
 
-
 begin;
 
 -- create Airbyte role
@@ -105,16 +104,14 @@ grant OWNERSHIP
 on database identifier($airbyte_database)
 to role identifier($airbyte_role);
 
+GRANT USAGE ON DATABASE identifier($raw_data_database) to ROLE identifier($airbyte_role);
+
 -- grant DBT database access
 GRANT USAGE ON DATABASE identifier($airbyte_database) to ROLE identifier($dbt_role);
 
-grant OWNERSHIP
-on database identifier($dbt_staging_database)
-to role identifier($dbt_role);
+GRANT USAGE ON DATABASE identifier($dbt_staging_database) to ROLE identifier($dbt_role);
 
-grant OWNERSHIP
-on database identifier($dbt_datamart_database)
-to role identifier($dbt_role);
+GRANT USAGE ON DATABASE identifier($dbt_datamart_database) to ROLE identifier($dbt_role);
 
 commit;
 
@@ -132,9 +129,10 @@ commit;
 begin;
 
 -- Grant read only access to Airbyte to ingest Raw Data
+GRANT USAGE ON SCHEMA identifier($raw_data_schema) to ROLE identifier($airbyte_role);
 GRANT SELECT ON ALL TABLES IN SCHEMA identifier($raw_data_schema) TO ROLE identifier($airbyte_role);
-GRANT SELECT ON FUTURE TABLES IN SCHEMA identifier($raw_data_schema) TO ROLE identifier($airbyte_role);
 GRANT SELECT ON ALL VIEWS IN SCHEMA identifier($raw_data_schema) TO ROLE identifier($airbyte_role);
+GRANT SELECT ON FUTURE TABLES IN SCHEMA identifier($raw_data_schema) TO ROLE identifier($airbyte_role);
 GRANT SELECT ON FUTURE VIEWS IN SCHEMA identifier($raw_data_schema) TO ROLE identifier($airbyte_role);
 
 commit;
@@ -158,9 +156,10 @@ on schema identifier($airbyte_schema)
 to role identifier($airbyte_role);
 
 -- Grant read access to DBT to ingested data by Airbyte
+GRANT USAGE ON SCHEMA identifier($airbyte_schema) to ROLE identifier($dbt_role);
 GRANT SELECT ON ALL TABLES IN SCHEMA identifier($airbyte_schema) TO ROLE identifier($dbt_role);
-GRANT SELECT ON FUTURE TABLES IN SCHEMA identifier($airbyte_schema) TO ROLE identifier($dbt_role);
 GRANT SELECT ON ALL VIEWS IN SCHEMA identifier($airbyte_schema) TO ROLE identifier($dbt_role);
+GRANT SELECT ON FUTURE TABLES IN SCHEMA identifier($airbyte_schema) TO ROLE identifier($dbt_role);
 GRANT SELECT ON FUTURE VIEWS IN SCHEMA identifier($airbyte_schema) TO ROLE identifier($dbt_role);
 
 commit;
@@ -183,6 +182,14 @@ grant OWNERSHIP
 on schema identifier($dbt_staging_schema)
 to role identifier($dbt_role);
 
+
+GRANT USAGE ON SCHEMA identifier($dbt_staging_schema) to ROLE identifier($dbt_role);
+
+-- Grant SELECT, INSERT, UPDATE, and DELETE on tables and views
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA identifier($dbt_staging_schema) TO ROLE identifier($dbt_role);
+GRANT SELECT ON ALL VIEWS IN SCHEMA identifier($dbt_staging_schema) TO ROLE identifier($dbt_role);
+
+
 commit;
 
 -- DBT
@@ -193,12 +200,15 @@ USE DATABASE identifier($dbt_datamart_database);
 -- create schema for Airbyte data
 CREATE SCHEMA IF NOT EXISTS identifier($dbt_datamart_schema);
 
-commit;
-
-begin;
-
 grant OWNERSHIP
 on schema identifier($dbt_datamart_schema)
 to role identifier($dbt_role);
+
+GRANT USAGE ON SCHEMA identifier($dbt_datamart_schema) to ROLE identifier($dbt_role);
+
+-- Grant SELECT, INSERT, UPDATE, and DELETE on tables and views
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA identifier($dbt_datamart_schema) TO ROLE identifier($dbt_role);
+GRANT SELECT ON ALL VIEWS IN SCHEMA identifier($dbt_datamart_schema) TO ROLE identifier($dbt_role);
+
 
 commit;
