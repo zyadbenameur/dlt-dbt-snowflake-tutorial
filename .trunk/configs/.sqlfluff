@@ -1,7 +1,7 @@
 [sqlfluff]
 # Supported dialects https://docs.sqlfluff.com/en/stable/perma/dialects.html
 # Or run 'sqlfluff dialects'
-dialect = Snowflake
+dialect = snowflake
 templater = jinja
 sql_file_exts = .sql
 
@@ -9,7 +9,15 @@ sql_file_exts = .sql
 # See https://docs.sqlfluff.com/en/stable/perma/rule_disabling.html
 # AM04 (ambiguous.column_count) and ST06 (structure.column_order) are
 # two of the more controversial rules included to illustrate usage.
-exclude_rules = ambiguous.column_count, structure.column_order, layout.indent, layout.cte_bracket, layout.select_targets, layout.spacing
+exclude_rules =
+    ambiguous.column_count,
+    structure.column_order,
+    layout.indent,
+    layout.cte_bracket,
+    layout.cte_newline,
+    layout.select_targets,
+    layout.spacing,
+    convention.select_trailing_comma,
 
 # The standard max_line_length is 80 in line with the convention of
 # other tools and several style guides. Many projects however prefer
@@ -30,3 +38,7 @@ extended_capitalisation_policy = lower
 
 [sqlfluff:rules:convention.terminator]
 multiline_newline = True
+
+[sqlfluff:templater:jinja:macros]
+a_macro_def = {% macro cents_to_dollars(column_name) %} round(cast(({{ column_name }} / 100) as numeric), 2) {% endmacro %}
+b_macro_def = {% dbt.date_trunc(column_a, column_b) %} round(cast(({{ column_name }} / 100) as numeric), 2) {% endmacro %}

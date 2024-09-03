@@ -17,7 +17,3 @@ pytest = "^6.2"
 [tool.dagster]
 module_name = "dagster_project.definitions"
 code_location_name = "dagster_project"
-
-[tool.sqlfmt]
-dialect = "snowflake"
-check = true
