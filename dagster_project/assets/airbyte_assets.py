@@ -6,7 +6,7 @@ airbyte_instance = AirbyteResource(
     port="8000",
     # If using basic auth, include username and password:
     username="airbyte",
-    password="password"
+    password="password",
 )
 
 # TODO: comment
