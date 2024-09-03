@@ -22,7 +22,8 @@ pip install --user --no-warn-script-location -e ".[dev]"
 # By doing this, all dbt plugins/extensions can access the same profiles.yml
 echo "Create a symbolic link to dbt's profiles.yml for dbt_power_user extension..."
 mkdir -p ~/.dbt/
-ln -sf /workspaces/dlt-dbt-snowflake-tutorial/dbt_project/profiles.yml ~/.dbt/profiles.yml
+ln -sf /workspaces/modern-data-pipelines-workshop/dbt_project/dbt_project.yml ~/.dbt/dbt_project.yml
+ln -sf /workspaces/modern-data-pipelines-workshop/dbt_project/profiles.yml ~/.dbt/profiles.yml
 
 # Install terraform
 #echo "Installing Terraform..."

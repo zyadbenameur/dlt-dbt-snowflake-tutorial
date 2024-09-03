@@ -1,4 +1,3 @@
-# trunk-ignore-all(trivy/DS026)
 # Start from a base image for python. (https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3)
 # https://mcr.microsoft.com/v2/vscode/devcontainers/python/tags/list
 ARG VARIANT="3.10-bullseye"
@@ -16,9 +15,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER vscode
 
 # Change working directory
-WORKDIR "/workspaces/dlt-dbt-snowflake-workshop/"
+WORKDIR "/workspaces/modern-data-pipelines-workshop/"
 
-# Install python/Dagster requirements (defined in `setup.py`)
+# Install python requirements (defined in `setup.py`)
 # ? (Will be updated in `postStartCommand.bash`)
 # ? We pre-install here to speed up the postStartCommand
 COPY setup.py ./

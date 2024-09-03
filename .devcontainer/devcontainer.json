@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/python-3
 {
-  "name": "Python 3 + PostgreSQL & pgAdmin",
+  "name": "Python - DBT dev container",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
@@ -63,9 +63,6 @@
         // Docker
         // https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker
         "ms-azuretools.vscode-docker",
-        // IntelliCode extension: AI-assisted development features for Python
-        // https://marketplace.visualstudio.com/items?itemName=visualstudioexptteam.vscodeintellicode
-        ////"visualstudioexptteam.vscodeintellicode",
         // ************* SYNTAX HIGHLIGHT **************
         // Rainbow CSV: Highlight CSV and TSV files, Run SQL-like queries
         // https://open-vsx.org/extension/mechatroner/rainbow-csv
