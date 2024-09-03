@@ -2,27 +2,31 @@
 # Supported dialects https://docs.sqlfluff.com/en/stable/perma/dialects.html
 # Or run 'sqlfluff dialects'
 dialect = Snowflake
-
-# One of [raw|jinja|python|placeholder]
-templater = dbt
+templater = jinja
+sql_file_exts = .sql
 
 # Comma separated list of rules to exclude, or None
 # See https://docs.sqlfluff.com/en/stable/perma/rule_disabling.html
 # AM04 (ambiguous.column_count) and ST06 (structure.column_order) are
 # two of the more controversial rules included to illustrate usage.
-exclude_rules = ambiguous.column_count, structure.column_order
+exclude_rules = ambiguous.column_count, structure.column_order, layout.indent, layout.cte_bracket, layout.select_targets, layout.spacing
 
 # The standard max_line_length is 80 in line with the convention of
 # other tools and several style guides. Many projects however prefer
 # something a little longer.
 # Set to zero or negative to disable checks.
-max_line_length = 80
-
-
-# If using the dbt templater, we recommend setting the project dir.
-[sqlfluff:templater:dbt]
-project_dir = .dbt_project/
+max_line_length = 88
 
 # Allows SQLFluff indentation
 [sqlfluff:indentation]
 allow_implicit_indents = True
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
+
+[sqlfluff:rules]
+capitalisation_policy = lower
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:convention.terminator]
+multiline_newline = True
