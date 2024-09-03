@@ -1,8 +1,9 @@
 version: 2
 
 sources:
-  - name: airbyte_database
-    schema: airbyte_schema
+  - name: raw_data
+    database: AIRBYTE_DATABASE
+    schema: AIRBYTE_SCHEMA
     description: E-commerce data for the Jaffle Shop
     freshness:
       warn_after:
@@ -11,6 +12,9 @@ sources:
     tables:
       - name: raw_customers
         description: One record per person who has purchased one or more items
+        meta:
+          dagster:
+            asset_key: ["RAW_CUSTOMERS"]
       - name: raw_orders
         description: One record per order (consisting of one or more order items)
         loaded_at_field: ordered_at
@@ -18,7 +22,46 @@ sources:
         description: Items included in an order
       - name: raw_stores
         loaded_at_field: opened_at
+        meta:
+          dagster:
+            asset_key: ["RAW_STORES"]
       - name: raw_products
         description: One record per SKU for items sold in stores
+        meta:
+          dagster:
+            asset_key: ["RAW_PRODUCTS"]
       - name: raw_supplies
         description: One record per supply per SKU of items sold in stores
+        meta:
+          dagster:
+            asset_key: ["RAW_SUPPLIES"]
+
+  - name: dagster_airbyte_assets
+    database: AIRBYTE_DATABASE
+    schema: AIRBYTE_SCHEMA
+    description: E-commerce data for the Jaffle Shop ingested by Airbyte
+    tables:
+        - name: raw_customers
+          meta:
+            dagster:
+              asset_key: ["RAW_CUSTOMERS"]
+        - name: raw_orders
+          meta:
+            dagster:
+              asset_key: ["RAW_ORDERS"]
+        - name: raw_items
+          meta:
+            dagster:
+              asset_key: ["RAW_ITEMS"]
+        - name: raw_stores
+          meta:
+            dagster:
+              asset_key: ["RAW_STORES"]
+        - name: raw_products
+          meta:
+            dagster:
+              asset_key: ["RAW_PRODUCTS"]
+        - name: raw_supplies
+          meta:
+            dagster:
+              asset_key: ["RAW_SUPPLIES"]

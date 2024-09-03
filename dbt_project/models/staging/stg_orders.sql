@@ -2,7 +2,10 @@ with
 
 source as (
 
-    select * from {{ source('raw_data', 'raw_orders') }}
+    -- Using a Dagster source instead of a DBT source
+    -- REF: https://docs.dagster.io/integrations/dbt/reference#upstream-dependencies
+    -- {# select * from {{ source('raw_data', 'raw_orders') }} #}
+    select * from {{ source("dagster_airbyte_assets", "raw_orders") }}
 
 ),
 
