@@ -15,5 +15,9 @@ python = "^3.10.13"
 pytest = "^6.2"
 
 [tool.dagster]
-module_name = "orchestration.definitions"
-code_location_name = "orchestration"
+module_name = "dagster_project.definitions"
+code_location_name = "dagster_project"
+
+[tool.sqlfmt]
+dialect = "snowflake"
+check = true
