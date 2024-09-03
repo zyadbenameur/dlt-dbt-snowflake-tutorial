@@ -1,25 +1,24 @@
 with
 
-source as (
+    source as (
 
-    -- Using a Dagster source instead of a DBT source
-    -- REF: https://docs.dagster.io/integrations/dbt/reference#upstream-dependencies
-    -- {# select * from {{ source('raw_data', 'raw_items') }} #}
-    select * from {{ source("dagster_airbyte_assets", "raw_items") }}
+        -- Using a Dagster source instead of a DBT source
+        -- REF: https://docs.dagster.io/integrations/dbt/reference#upstream-dependencies
+        -- {# select * from {{ source('raw_data', 'raw_items') }} #}
+        select * from {{ source("dagster_airbyte_assets", "raw_items") }}
 
-),
+    ),
 
-renamed as (
+    renamed as (
 
-    select
+        select
 
-        ----------  ids
-        id as order_item_id,
-        order_id,
-        sku as product_id
+            -- --------  ids
+            id as order_item_id, order_id, sku as product_id
 
-    from source
+        from source
 
-)
+    )
 
-select * from renamed
+select *
+from renamed

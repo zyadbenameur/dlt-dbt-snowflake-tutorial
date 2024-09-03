@@ -41,27 +41,27 @@ sources:
     schema: AIRBYTE_SCHEMA
     description: E-commerce data for the Jaffle Shop ingested by Airbyte
     tables:
-        - name: raw_customers
-          meta:
-            dagster:
-              asset_key: ["RAW_CUSTOMERS"]
-        - name: raw_orders
-          meta:
-            dagster:
-              asset_key: ["RAW_ORDERS"]
-        - name: raw_items
-          meta:
-            dagster:
-              asset_key: ["RAW_ITEMS"]
-        - name: raw_stores
-          meta:
-            dagster:
-              asset_key: ["RAW_STORES"]
-        - name: raw_products
-          meta:
-            dagster:
-              asset_key: ["RAW_PRODUCTS"]
-        - name: raw_supplies
-          meta:
-            dagster:
-              asset_key: ["RAW_SUPPLIES"]
+      - name: raw_customers
+        meta:
+          dagster:
+            asset_key: ["RAW_CUSTOMERS"]
+      - name: raw_orders
+        meta:
+          dagster:
+            asset_key: ["RAW_ORDERS"]
+      - name: raw_items
+        meta:
+          dagster:
+            asset_key: ["RAW_ITEMS"]
+      - name: raw_stores
+        meta:
+          dagster:
+            asset_key: ["RAW_STORES"]
+      - name: raw_products
+        meta:
+          dagster:
+            asset_key: ["RAW_PRODUCTS"]
+      - name: raw_supplies
+        meta:
+          dagster:
+            asset_key: ["RAW_SUPPLIES"]
