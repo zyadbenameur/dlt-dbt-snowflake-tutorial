@@ -1,5 +1,5 @@
 models:
-  - name: orders
+  - name: fact_orders
     description: Order overview data mart, offering key details for each order inlcluding if it's a customer's first order and a food vs. drink item breakdown. One row per order.
     data_tests:
       - dbt_utils.expression_is_true:
@@ -34,7 +34,7 @@ unit_tests:
     description: "Test that the counts of drinks and food orders convert to booleans properly."
     model: orders
     given:
-      - input: ref('order_items')
+      - input: ref('fact_order_items')
         rows:
           - {
               order_id: 1,
@@ -76,12 +76,12 @@ unit_tests:
           }
 
 semantic_models:
-  - name: orders
+  - name: fact_orders
     defaults:
       agg_time_dimension: ordered_at
     description: |
       Order fact table. This table is at the order grain with one row per order.
-    model: ref('orders')
+    model: ref('fact_orders')
     entities:
       - name: order_id
         type: primary

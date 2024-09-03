@@ -1,5 +1,5 @@
 models:
-  - name: customers
+  - name: dim_customers
     description: Customer overview data mart, offering key details for each unique customer. One row per customer.
     data_tests:
       - dbt_utils.expression_is_true:
@@ -31,14 +31,14 @@ models:
               values: ["new", "returning"]
 
 semantic_models:
-  - name: customers
+  - name: dim_customers
     defaults:
       agg_time_dimension: first_ordered_at
     description: |
       Customer grain mart.
-    model: ref('customers')
+    model: ref('dim_customers')
     entities:
-      - name: customer
+      - name: dim_customers
         expr: customer_id
         type: primary
     dimensions:
@@ -99,7 +99,7 @@ saved_queries:
         - lifetime_spend_pretax
         - average_order_value
       group_by:
-        - Entity('customer')
+        - Entity('dim_customers')
     exports:
       - name: customer_order_metrics
         config:

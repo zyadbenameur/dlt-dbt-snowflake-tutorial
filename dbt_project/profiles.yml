@@ -9,8 +9,8 @@ dbt_project:
       password: password
 
       role: dbt_role
-      database: staging
       warehouse: dbt_warehouse
+      database: staging
       schema: jaffle_shop
       threads: 1
       client_session_keep_alive: False
