@@ -1,17 +1,22 @@
 dbt_project:
+  target: dev
+
   outputs:
     dev:
       type: snowflake
-      account: "frpviom-az19035"
+
+      # account is the first part of the snowflake url :
+      # https://frpviom-az19035.snowflakecomputing.com/
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
 
       # User/password auth
-      user: dbt_user
-      password: password
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
 
-      role: dbt_role
-      warehouse: dbt_warehouse
-      database: staging
-      schema: jaffle_shop
+      role: DBT_ROLE
+      warehouse: DBT_WAREHOUSE
+      database: STAGING
+      schema: JAFFLE_SHOP
       threads: 1
       client_session_keep_alive: False
 
@@ -22,4 +27,15 @@ dbt_project:
       retry_all: False # default: false
       reuse_connections: False # default: false (available v1.4+)
 
-  target: dev
+    prod:
+      type: snowflake
+
+      # account is the first part of the snowflake url :
+      # https://frpviom-az19035.snowflakecomputing.com/
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: DBT_ROLE
+      warehouse: DBT_WAREHOUSE
+      database: ANALYTICS
+      schema: DBT_PROD
