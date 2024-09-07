@@ -6,7 +6,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         # dbt
-        "dbt-snowflake==1.7.3",  # https://pypi.org/project/dbt-snowflake/
+        "dbt-core==1.8.6",  # https://pypi.org/project/dbt-core/
+        "dbt-snowflake",  # https://pypi.org/project/dbt-snowflake/
+        # "dbt-metricflow",  # https://pypi.org/project/dbt-metricflow/
         # dagster
         "dagster",
         "dagster-dbt",

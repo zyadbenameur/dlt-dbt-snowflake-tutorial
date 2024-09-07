@@ -5,6 +5,6 @@
 .airbyte/
 
 # pycache folders
-dagster_project/__pycache__/
-dagster_project/assets/__pycache__/
+*/__pycache__/
+*/*/__pycache__/
 tmp*/
