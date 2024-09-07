@@ -20,6 +20,7 @@ with
             order_items.*,
 
             orders.ordered_at,
+            orders.order_date,
 
             products.product_name,
             products.product_price,

@@ -22,8 +22,8 @@ with
             -- -------- numerics
             tax_rate,
 
-            -- -------- timestamps
-            {{ dbt.date_trunc("day", "opened_at") }} as opened_date
+            -- date
+            opened_at::datetime as opened_at,
 
         from source
 
