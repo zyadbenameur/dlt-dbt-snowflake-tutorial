@@ -39,6 +39,7 @@ lint:
     - linters: [ALL]
       paths:
         - airbyte/**
+        - utils/1__snowflake_initial_setup.sql
 # actions:
 #   enabled:
 #     - trunk-announce
