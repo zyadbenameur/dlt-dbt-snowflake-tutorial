@@ -95,6 +95,7 @@ to role identifier($dbt_role);
 
 
 -- create Airbyte database
+SELECT CURRENT_ROLE();
 drop database if exists identifier($airbyte_database);
 create database identifier($airbyte_database);
 
