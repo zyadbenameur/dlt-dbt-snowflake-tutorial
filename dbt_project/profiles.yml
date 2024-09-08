@@ -10,8 +10,8 @@ dbt_project:
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
 
       # User/password auth
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
 
       role: DBT_ROLE
       warehouse: DBT_WAREHOUSE
@@ -33,8 +33,8 @@ dbt_project:
       # account is the first part of the snowflake url :
       # https://frpviom-az19035.snowflakecomputing.com/
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
       role: DBT_ROLE
       warehouse: DBT_WAREHOUSE
       database: ANALYTICS
